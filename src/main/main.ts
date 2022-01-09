@@ -17,11 +17,19 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
+const pty = require('node-pty');
+
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
+    // const shelly = os.platform() === 'win32' ? 'powershell.exe' : 'zsh';
+    // const ptyProcess = pty.spawn('zsh', [], {
+    //   name: 'xterm-color',
+    //   cwd: process.env.HOME, // Which path should terminal start
+    //   env: process.env, // Pass environment variables
+    // } as any);
   }
 }
 
